@@ -1,16 +1,14 @@
-import Header from "./components/Header/";
-import Center from "./components/info/Center/Center";
-import "./App.css"; // App.css 파일을 import
+import React from "react";
+import Header from "./components/Header";
+import Wrapper from "./components/Wrapper";
+import Footer from "./components/Footer";
 
-function App() {
+export function App() {
   return (
     <>
       <Header />
-      <Center />
+      <Wrapper />
+      <Footer />
     </>
   );
 }
-
-export default App;
-
-// 모양만 컴포넌트 하나로 만들기
