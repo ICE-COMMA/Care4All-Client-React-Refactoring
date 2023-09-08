@@ -1,8 +1,14 @@
 header {
-  height: 10%;
   background-color: pink;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-size: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.no-data {
+  background-color: transparent;
 }

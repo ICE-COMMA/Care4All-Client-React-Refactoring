@@ -1,4 +1,5 @@
 import React from "react";
+import "./RightNav.css";
 
 function RightNav({ user }) {
   return (
