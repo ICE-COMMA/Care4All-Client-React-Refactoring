@@ -1,9 +1,16 @@
+@font-face {
+  font-family: "BlackHanSans-Regular";
+  font-weight: normal;
+  src: url("./fonts/BlackHanSans-Regular.ttf") format("truetype");
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
   color: black;
+  font-family: "BlackHanSans-Regular";
 }
 
 html,

@@ -7,11 +7,10 @@ function LeftNav() {
     padding: "0.8rem 0.5rem", // 상하 여백을 늘립니다.
   };
   const LNavStyle = {
-    marginLeft: "12.5vw",
     display: "flex",
     justifyContent: "center",
-    // alignItems: "center",
     flexDirection: "column",
+    // padding: "0 5vw",
   };
   const boxStyle = {
     display: "flex",

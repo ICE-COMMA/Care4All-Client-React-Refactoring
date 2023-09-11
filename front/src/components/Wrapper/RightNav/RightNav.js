@@ -4,11 +4,10 @@ import Box from "../Box";
 
 function RightNav({ user }) {
   const RNavStyle = {
-    marginRight: "12.5vw",
     display: "flex",
     justifyContent: "center",
-    // alignItems: "center",
     flexDirection: "column",
+    // padding: "0 5vw",
   };
 
   const menuStyle = {

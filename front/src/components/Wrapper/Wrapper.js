@@ -7,20 +7,14 @@ const Wrapper = () => {
   const wrapperStyle = {
     height: "80%",
     display: "flex",
-    padding: "10vh",
+    padding: "10vh 15vw",
   };
 
-  const rightStyle = {
-    flex: 2,
-  };
-  const contentStyle = {
-    flex: 6,
-  };
   return (
     <div id="wrapper" style={wrapperStyle}>
       <LeftNav></LeftNav>
-      <Content style={contentStyle}></Content>
-      <RightNav style={rightStyle}></RightNav>
+      <Content></Content>
+      <RightNav></RightNav>
     </div>
   );
 };
