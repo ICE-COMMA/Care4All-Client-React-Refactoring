@@ -7,8 +7,7 @@ const Wrapper = () => {
   const wrapperStyle = {
     height: "80%",
     display: "flex",
-    marginLeft: "20vw",
-    marginRight: "20vw",
+    padding: "10vh",
   };
 
   const rightStyle = {
