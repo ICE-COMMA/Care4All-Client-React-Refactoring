@@ -1,40 +1,60 @@
 import React from "react";
 import "./RightNav.css";
+import Box from "../Box";
 
 function RightNav({ user }) {
+  const RNavStyle = {
+    marginRight: "12.5vw",
+    display: "flex",
+    justifyContent: "center",
+    // alignItems: "center",
+    flexDirection: "column",
+  };
+
+  const menuStyle = {
+    padding: "0.5rem",
+  };
+  const boxStyle = {
+    display: "flex",
+    flexDirection: "column",
+    borderRadius: "20px",
+    border: "2.5px solid #D9D9D9",
+    padding: "0.5rem",
+    marginTop: "1.5rem",
+    marginBottom: "2rem",
+  };
+
   return (
-    <nav id="right-nav">
-      <div id="user">
+    <nav id="right-nav" style={RNavStyle}>
+      <Box id="user" style={boxStyle}>
         {user ? (
           // 로그인한 경우
           <>
-            <div id="greeting">
-              <a href="#">Hello {user}!</a>
+            <div id="greeting" style={menuStyle}>
+              Hello {user}!
             </div>
-            <div id="my-page" className="signup-mypage">
-              <a href={`./my_page/${user}`}>마이페이지</a>
+            <div id="my-page" className="signup-mypage" style={menuStyle}>
+              마이페이지
             </div>
-            <div id="logout" className="login-logout">
-              <a href="./logout">로그아웃</a>
+            <div id="logout" className="login-logout" style={menuStyle}>
+              로그아웃
             </div>
           </>
         ) : (
           // 로그인하지 않은 경우
           <>
-            <div id="sign-up" className="signup-mypage">
-              <a>회원가입</a>
+            <div id="sign-up" className="signup-mypage" style={menuStyle}>
+              회원가입
             </div>
-            <div id="login" className="login-logout">
-              <a>로그인</a>
+            <div id="login" className="login-logout" style={menuStyle}>
+              로그인
             </div>
           </>
         )}
-      </div>
-      <div id="location">
-        <div>
-          <a>관심지역 설정</a>
-        </div>
-      </div>
+      </Box>
+      <Box id="location" style={boxStyle}>
+        <div style={menuStyle}>관심 지역 설정</div>
+      </Box>
     </nav>
   );
 }

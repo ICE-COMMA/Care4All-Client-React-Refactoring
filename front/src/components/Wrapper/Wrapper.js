@@ -26,3 +26,5 @@ const Wrapper = () => {
 };
 
 export default Wrapper;
+
+// 상위에서 설정할 속성에 대해서 props로 넘겨줘야함
