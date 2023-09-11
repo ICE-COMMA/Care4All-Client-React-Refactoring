@@ -1,7 +1,7 @@
 @font-face {
   font-family: "BlackHanSans-Regular";
   font-weight: normal;
-  src: url("./fonts/BlackHanSans-Regular.ttf") format("truetype");
+  src: url("../public/fonts/BlackHanSans-Regular.ttf") format("truetype");
 }
 
 * {
