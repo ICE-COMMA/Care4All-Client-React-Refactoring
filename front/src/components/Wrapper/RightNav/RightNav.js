@@ -1,61 +1,58 @@
 import React from "react";
-import "./RightNav.css";
 import Box from "../Box";
+import "./RightNav.css";
 
-function RightNav({ user }) {
-  const RNavStyle = {
-    display: "flex",
-    justifyContent: "center",
-    flexDirection: "column",
-    // padding: "0 5vw",
-  };
-
-  const menuStyle = {
-    padding: "0.5rem",
-  };
-  const boxStyle = {
-    display: "flex",
-    flexDirection: "column",
-    borderRadius: "20px",
-    border: "2.5px solid #D9D9D9",
-    padding: "0.5rem",
-    marginTop: "1.5rem",
-    marginBottom: "2rem",
-  };
-
+function RightNav({ openModal }) {
+  const isUserLoggedIn = false;
   return (
-    <nav id="right-nav" style={RNavStyle}>
-      <Box id="user" style={boxStyle}>
-        {user ? (
-          // 로그인한 경우
-          <>
-            <div id="greeting" style={menuStyle}>
-              Hello {user}!
-            </div>
-            <div id="my-page" className="signup-mypage" style={menuStyle}>
-              마이페이지
-            </div>
-            <div id="logout" className="login-logout" style={menuStyle}>
-              로그아웃
-            </div>
-          </>
-        ) : (
-          // 로그인하지 않은 경우
-          <>
-            <div id="sign-up" className="signup-mypage" style={menuStyle}>
-              회원가입
-            </div>
-            <div id="login" className="login-logout" style={menuStyle}>
-              로그인
-            </div>
-          </>
-        )}
-      </Box>
-      <Box id="location" style={boxStyle}>
-        <div style={menuStyle}>관심 지역 설정</div>
-      </Box>
-    </nav>
+    <>
+      <nav id="right-nav" className="right-nav">
+        <Box id="user" className="box">
+          {isUserLoggedIn ? (
+            // 로그인한 경우
+            <>
+              <div id="greeting" className="menu">
+                Hello user!
+                {/* {user로 나중에 변경하기} */}
+              </div>
+              <div id="my-page" className="signup-mypage menu">
+                마이페이지
+              </div>
+              <div id="logout" className="login-logout menu">
+                로그아웃
+              </div>
+            </>
+          ) : (
+            // 로그인하지 않은 경우
+            <>
+              <div
+                id="sign-up"
+                className="signup-mypage menu"
+                onClick={openModal}
+              >
+                회원가입
+              </div>
+              <div id="login" className="login-logout menu">
+                로그인
+              </div>
+            </>
+          )}
+        </Box>
+        <Box id="location" className="box">
+          <div className="menu">관심 지역 설정</div>
+        </Box>
+      </nav>
+    </>
   );
 }
 
 export default RightNav;
+
+// 구조
+// App
+//  Header
+//  Wrapper
+//    LeftNav
+//    Content
+//    RightNav
+//    Modal

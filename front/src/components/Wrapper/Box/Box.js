@@ -1,17 +1,14 @@
 import React from "react";
+import "./Box.css";
 
 const Box = (props) => {
   const boxStyle = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    fontSize: "1.5rem",
     ...props.style,
   };
 
   return (
     <>
-      <div className="text-box" style={boxStyle} id={props.id}>
+      <div className={props.className} style={boxStyle} id={props.id}>
         {props.children}
       </div>
     </>

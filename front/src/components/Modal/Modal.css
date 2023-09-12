@@ -1,0 +1,49 @@
+/* 모달 컨테이너 스타일 */
+.modal-container {
+  position: fixed; /* 고정 위치로 설정 */
+  top: 0; /* 화면 상단에 고정 */
+  left: 0; /* 화면 왼쪽에 고정 */
+  width: 100%; /* 전체 화면 너비 */
+  height: 100%; /* 전체 화면 높이 */
+  background-color: rgba(0, 0, 0, 0.7); /* 배경색 및 투명도 설정 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 9999; /* 최상위 z-index 값 */
+}
+
+/* 모달 내용 스타일 */
+.modal-content {
+  background-color: #fff; /* 모달 내용 배경색 */
+  border-radius: 8px; /* 모달 내용 둥글게 */
+  padding: 10vw; /* 내용 여백 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* 그림자 효과 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.sign-up-input {
+  width: 70%;
+  padding: 2%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.sign-form-btn {
+  width: 70%;
+  padding: 2%;
+  display: flex;
+  justify-content: space-around;
+  cursor: pointer;
+}
+
+.sign-form-btn > div {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+  width: 45%;
+}

@@ -1,16 +1,3 @@
-/* RightNav.css */
-
-.right-nav {
-  flex: 2;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.menu {
-  padding: 0.5rem;
-}
-
 .box {
   display: flex;
   flex-direction: column;

@@ -3,18 +3,17 @@ import LeftNav from "./LeftNav";
 import Content from "./Content";
 import RightNav from "./RightNav";
 
-const Wrapper = () => {
+const Wrapper = ({ openModal }) => {
   const wrapperStyle = {
     height: "80%",
     display: "flex",
     padding: "10vh 15vw",
   };
-
   return (
     <div id="wrapper" style={wrapperStyle}>
       <LeftNav></LeftNav>
       <Content></Content>
-      <RightNav></RightNav>
+      <RightNav openModal={openModal} />
     </div>
   );
 };
