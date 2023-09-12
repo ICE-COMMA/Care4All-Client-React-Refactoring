@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Header from "./components/Header";
 import Wrapper from "./components/Wrapper";
 import Footer from "./components/Footer";
-import Modal from "./components/Modal";
+import SignUpModal from "./components/Modal/SignModal/SignModal";
 
 export function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,7 +19,7 @@ export function App() {
       <Header />
       <Wrapper openModal={openModal} />
       <Footer />
-      <Modal isOpen={isModalOpen} closeModal={closeModal} />
+      <SignUpModal isOpen={isModalOpen} closeModal={closeModal} />
     </>
   );
 }
