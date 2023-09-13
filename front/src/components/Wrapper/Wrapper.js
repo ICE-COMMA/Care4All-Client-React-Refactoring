@@ -16,6 +16,7 @@ const Wrapper = (props) => {
       <RightNav
         openSignModal={props.openSignModal}
         openLocModal={props.openLocModal}
+        openLoginModal={props.openLoginModal}
       />
     </div>
   );
