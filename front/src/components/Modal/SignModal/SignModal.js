@@ -1,92 +1,70 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "../Modal";
+import axios from "axios";
 
 const SignUpModal = ({ isOpen, closeModal }) => {
-  const [idFlag, setIdFlag] = useState(false);
-  const [pwFlag, setPwFlag] = useState(false);
+  const [userName, setUserName] = useState(null);
+  const [userId, setUserId] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [passwordConfirm, setPasswordConfirm] = useState("");
 
-  const [formData, setFormData] = useState({});
-  //   useEffect(() => {
-  //     checkPasswords(password, confirmPassword);
-  //   }, [password, confirmPassword]);
+  const [message, setMessage] = useState("비밀번호가 일치하지 않습니다.");
+  const [userIdValid, setUserIdValid] = useState(false);
+  const [userPwValid, setUserPwValid] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-    console.log(formData);
-    if (formData.PW === formData.check_pw) {
-      // setMessage('사용 가능한 아이디입니다.');
-      setPwFlag(true);
-      console.log(pwFlag);
+  useEffect(() => {
+    if (password === passwordConfirm && password !== "") {
+      setUserPwValid(true);
+      setMessage("비밀번호가 일치합니다.");
     } else {
-      // setMessage('사용 중인 아이디입니다.');
-      setPwFlag(false);
-      console.log(pwFlag);
+      setUserPwValid(false);
+      setMessage("비밀번호가 일치하지 않습니다.");
     }
-  };
+  }, [password, passwordConfirm]);
 
-  const handleCheckID = async () => {
-    const getCSRFToken = () => {
-      const csrfCookie = document.cookie.match(/csrftoken=([\w-]+)/);
-      if (csrfCookie) {
-        return csrfCookie[1];
-      }
-      return null;
-    };
-    const userID = formData.id;
-    try {
-      const response = await fetch("/id_check", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-CSRFToken": getCSRFToken(),
-        },
-        body: JSON.stringify({ check_id: userID }),
+  const handleCheckID = () => {
+    axios
+      .post("/api/check_id/", { userId })
+      .then((response) => {
+        console.log(response);
+        setUserIdValid(true);
+      })
+      .catch((error) => {
+        // setMessage("서버 오류");
+        setUserIdValid(false);
       });
+  };
 
-      if (response.status === 201) {
-        const data = await response.json();
-        if (data.valid) {
-          alert("사용 가능한 아이디입니다.");
-          setIdFlag(true);
-        } else {
-          alert("사용 중인 아이디입니다.");
-          setIdFlag(false);
-        }
-      } else {
-        console.error("Error:", response.statusText);
-      }
-    } catch (error) {
-      console.error("Error:", error);
+  // const handleCheckPW = () => {
+  //   console.log(password);
+  //   console.log(passwordConfirm);
+  //   if (password === passwordConfirm) {
+  //     setMessage("비밀번호가 일치합니다.");
+  //     setUserPwValid(true);
+  //   } else {
+  //     setMessage("비밀번호가 일치하지 않습니다.");
+  //     setUserPwValid(false);
+  //   }
+  // };
+  const handleSubmit = () => {
+    if (!userIdValid) {
+      alert("아이디 중복을 확인해주세요.");
     }
+    if (!userPwValid) {
+      alert("비밀번호를 확인해주세요.");
+    }
+    axios
+      .post("/api/sing_up/", { userName, userId, password })
+      .then((response) => {
+        console.log(response);
+        alert("회원 가입에 성공했습니다.");
+        closeModal();
+      })
+      .catch((error) => {
+        // setMessage("회원가입 실패!");
+        console.log(error);
+      });
   };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (idFlag && pwFlag)
-      try {
-        const response = await fetch("/api/signup/", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        });
-
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-
-        const data = await response.json();
-        //   setMessage(data.message);
-      } catch (error) {
-        console.error("There was a problem with the fetch operation:", error);
-      }
-  };
-
   return (
     <Modal isOpen={isOpen} closeModal={closeModal}>
       <p>Sign up</p>
@@ -96,7 +74,7 @@ const SignUpModal = ({ isOpen, closeModal }) => {
         className="sign-up-input"
         name="name"
         placeholder="* 이름"
-        onChange={handleChange}
+        onChange={(e) => setUserName(e.target.value)}
         required
       />
       <input
@@ -105,7 +83,7 @@ const SignUpModal = ({ isOpen, closeModal }) => {
         className="sign-up-input"
         name="ID"
         placeholder="* 아이디"
-        onChange={handleChange}
+        onChange={(e) => setUserId(e.target.value)}
         required
       />
       <button id="check-id" className="sign-form-btn" onClick={handleCheckID}>
@@ -117,7 +95,9 @@ const SignUpModal = ({ isOpen, closeModal }) => {
         className="sign-up-input"
         name="PW"
         placeholder="* 비밀번호를 입력해주세요."
-        onChange={handleChange}
+        onChange={(e) => {
+          setPassword(e.target.value);
+        }}
         required
       />
       <input
@@ -126,12 +106,12 @@ const SignUpModal = ({ isOpen, closeModal }) => {
         className="sign-up-input"
         name="check_pw"
         placeholder="* 비밀번호를 한 번 더 입력해주세요."
-        onChange={handleChange}
+        onChange={(e) => {
+          setPasswordConfirm(e.target.value);
+        }}
         required
       />
-      {/* <p id="message" className="hidden">
-          비밀번호가 일치하지 않습니다.
-        </p> */}
+      <p>{message}</p>
       <input
         type="date"
         id="date"
@@ -140,14 +120,14 @@ const SignUpModal = ({ isOpen, closeModal }) => {
         min="1900-01-01"
         name="date"
         placeholder="생년월일"
-        onChange={handleChange}
+        onChange={(e) => console.log(e.target.value)}
         required
       />
       <select
         name="gender"
         id="gender"
         className="sign-up-input"
-        onChange={handleChange}
+        onChange={(e) => console.log(e.target.value)}
         required
       >
         <option value="gender-init">* 성별</option>
@@ -158,7 +138,7 @@ const SignUpModal = ({ isOpen, closeModal }) => {
         name="impaired"
         id="disabled"
         className="sign-up-input"
-        onChange={handleChange}
+        onChange={(e) => console.log(e.target.value)}
         required
       >
         <option value="impaired-init">* 장애여부</option>

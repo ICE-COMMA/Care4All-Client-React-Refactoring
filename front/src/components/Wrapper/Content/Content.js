@@ -9,7 +9,8 @@ const Content = () => {
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
-    padding: "5vh 8vw",
+    padding: "0 8vw",
+    paddingTop: "7vh",
   };
 
   const explainContent = {
