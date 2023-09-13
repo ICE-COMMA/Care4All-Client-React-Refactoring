@@ -2,24 +2,34 @@ import React, { useState } from "react";
 import Header from "./components/Header";
 import Wrapper from "./components/Wrapper";
 import Footer from "./components/Footer";
-import SignUpModal from "./components/Modal/SignModal/SignModal";
+import SignModal from "./components/Modal/SignModal";
+import LocModal from "./components/Modal/LocModal";
 
 export function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const openModal = () => {
-    setIsModalOpen(true); // 모달 열기
+  const [isSignModalOpen, setIsSignModalOpen] = useState(false);
+  const openSignModal = () => {
+    setIsSignModalOpen(true);
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false); // 모달 닫기
+  const closeSignModal = () => {
+    setIsSignModalOpen(false);
+  };
+  const [isLocModalOpen, setisLocModalOpen] = useState(false);
+  const openLocModal = () => {
+    setisLocModalOpen(true);
+  };
+
+  const closeLocModal = () => {
+    setisLocModalOpen(false);
   };
 
   return (
     <>
       <Header />
-      <Wrapper openModal={openModal} />
+      <Wrapper openSignModal={openSignModal} openLocModal={openLocModal} />
       <Footer />
-      <SignUpModal isOpen={isModalOpen} closeModal={closeModal} />
+      <SignModal isOpen={isSignModalOpen} closeModal={closeSignModal} />
+      <LocModal isOpen={isLocModalOpen} closeModal={closeLocModal} />
     </>
   );
 }

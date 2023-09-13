@@ -2,7 +2,7 @@ import React from "react";
 import Box from "../Box";
 import "./RightNav.css";
 
-function RightNav({ openModal }) {
+function RightNav({ openSignModal, openLocModal }) {
   const isUserLoggedIn = false;
   return (
     <>
@@ -28,7 +28,7 @@ function RightNav({ openModal }) {
               <div
                 id="sign-up"
                 className="signup-mypage menu"
-                onClick={openModal}
+                onClick={openSignModal}
               >
                 회원가입
               </div>
@@ -39,7 +39,9 @@ function RightNav({ openModal }) {
           )}
         </Box>
         <Box id="location" className="box">
-          <div className="menu">관심 지역 설정</div>
+          <div className="menu" onClick={openLocModal}>
+            관심 지역 설정
+          </div>
         </Box>
       </nav>
     </>

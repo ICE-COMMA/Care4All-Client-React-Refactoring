@@ -7,6 +7,10 @@
   flex-direction: column;
 }
 
+nav > div {
+  cursor: pointer;
+}
+
 .menu {
   padding: 0.5rem;
 }

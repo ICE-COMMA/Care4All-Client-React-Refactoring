@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import Modal from "../Modal";
 import axios from "axios";
 
-const SignUpModal = ({ isOpen, closeModal }) => {
+const SignModal = ({ isOpen, closeModal }) => {
   const [userName, setUserName] = useState(null);
   const [userId, setUserId] = useState(null);
-  const [password, setPassword] = useState(null);
+  const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
 
   const [message, setMessage] = useState("비밀번호가 일치하지 않습니다.");
@@ -35,17 +35,6 @@ const SignUpModal = ({ isOpen, closeModal }) => {
       });
   };
 
-  // const handleCheckPW = () => {
-  //   console.log(password);
-  //   console.log(passwordConfirm);
-  //   if (password === passwordConfirm) {
-  //     setMessage("비밀번호가 일치합니다.");
-  //     setUserPwValid(true);
-  //   } else {
-  //     setMessage("비밀번호가 일치하지 않습니다.");
-  //     setUserPwValid(false);
-  //   }
-  // };
   const handleSubmit = () => {
     if (!userIdValid) {
       alert("아이디 중복을 확인해주세요.");
@@ -54,7 +43,7 @@ const SignUpModal = ({ isOpen, closeModal }) => {
       alert("비밀번호를 확인해주세요.");
     }
     axios
-      .post("/api/sing_up/", { userName, userId, password })
+      .post("/api/sign_up/", { userName, userId, password })
       .then((response) => {
         console.log(response);
         alert("회원 가입에 성공했습니다.");
@@ -155,4 +144,4 @@ const SignUpModal = ({ isOpen, closeModal }) => {
   );
 };
 
-export default SignUpModal;
+export default SignModal;

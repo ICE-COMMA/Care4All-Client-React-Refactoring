@@ -3,7 +3,7 @@ import LeftNav from "./LeftNav";
 import Content from "./Content";
 import RightNav from "./RightNav";
 
-const Wrapper = ({ openModal }) => {
+const Wrapper = (props) => {
   const wrapperStyle = {
     height: "80%",
     display: "flex",
@@ -13,7 +13,10 @@ const Wrapper = ({ openModal }) => {
     <div id="wrapper" style={wrapperStyle}>
       <LeftNav></LeftNav>
       <Content></Content>
-      <RightNav openModal={openModal} />
+      <RightNav
+        openSignModal={props.openSignModal}
+        openLocModal={props.openLocModal}
+      />
     </div>
   );
 };

@@ -1,3 +1,7 @@
 nav {
   flex: 2;
 }
+
+nav > div {
+  cursor: pointer;
+}
