@@ -2,7 +2,7 @@ import React from "react";
 import "./LeftNav.css";
 import Box from "../Box";
 
-function LeftNav() {
+function LeftNav(props) {
   const menuStyle = {
     padding: "0.8rem 0.5rem", // 상하 여백을 늘립니다.
   };
@@ -34,7 +34,9 @@ function LeftNav() {
         <div style={menuStyle}>안전정보</div>
       </Box>
       <Box id="contact" style={boxStyle}>
-        <div style={menuStyle}>커스터마이징</div>
+        <div style={menuStyle} onClick={props.openCustomModal}>
+          커스터마이징
+        </div>
         <div style={menuStyle}>제보하기</div>
       </Box>
     </nav>

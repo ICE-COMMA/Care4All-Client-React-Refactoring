@@ -1,5 +1,6 @@
 import React from "react";
 import "./Content.css";
+import SpeechService from "../SpeechService/SpeechService";
 
 const Content = () => {
   const BoxStyle = {
@@ -57,6 +58,7 @@ const Content = () => {
         <span className="slide3">○</span>
         <span className="slide4">○</span>
       </div>
+      <SpeechService />
     </div>
   );
 };

@@ -11,7 +11,7 @@ const Wrapper = (props) => {
   };
   return (
     <div id="wrapper" style={wrapperStyle}>
-      <LeftNav></LeftNav>
+      <LeftNav openCustomModal={props.openCustomModal} />
       <Content></Content>
       <RightNav
         openSignModal={props.openSignModal}

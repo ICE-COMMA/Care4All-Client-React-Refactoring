@@ -5,8 +5,17 @@ import Footer from "./components/Footer";
 import SignModal from "./components/Modal/SignModal";
 import LocModal from "./components/Modal/LocModal";
 import LoginModal from "./components/Modal/LoginModal";
+import CustomModal from "./components/Modal/CustomModal";
 
 export function App() {
+  const [isCustomModalOpen, setIsCustomModalOpen] = useState(false);
+  const openCustomModal = () => {
+    setIsCustomModalOpen(true);
+  };
+  const closeCustomModal = () => {
+    setIsCustomModalOpen(false);
+  };
+
   const [isSignModalOpen, setIsSignModalOpen] = useState(false);
   const openSignModal = () => {
     setIsSignModalOpen(true);
@@ -37,11 +46,13 @@ export function App() {
     <>
       <Header />
       <Wrapper
+        openCustomModal={openCustomModal}
         openSignModal={openSignModal}
         openLocModal={openLocModal}
         openLoginModal={openLoginModal}
       />
       <Footer />
+      <CustomModal isOpen={isCustomModalOpen} closeModal={closeCustomModal} />
       <SignModal isOpen={isSignModalOpen} closeModal={closeSignModal} />
       <LocModal isOpen={isLocModalOpen} closeModal={closeLocModal} />
       <LoginModal isOpen={isLoginModalOpen} closeModal={closeLoginModal} />
