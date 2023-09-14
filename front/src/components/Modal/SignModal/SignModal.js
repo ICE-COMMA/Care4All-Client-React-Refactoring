@@ -12,6 +12,13 @@ const SignModal = ({ isOpen, closeModal }) => {
   const [userIdValid, setUserIdValid] = useState(false);
   const [userPwValid, setUserPwValid] = useState(false);
 
+  function getCookie(name) {
+    let value = "; " + document.cookie;
+    let parts = value.split("; " + name + "=");
+    if (parts.length === 2) return parts.pop().split(";").shift();
+  }
+  const csrftoken = getCookie("csrftoken");
+
   useEffect(() => {
     if (password === passwordConfirm && password !== "") {
       setUserPwValid(true);
@@ -24,7 +31,15 @@ const SignModal = ({ isOpen, closeModal }) => {
 
   const handleCheckID = () => {
     axios
-      .post("/api/check_id/", { userId })
+      .post(
+        "/api/id_check/",
+        { userId },
+        {
+          headers: {
+            "X-CSRFToken": csrftoken,
+          },
+        }
+      )
       .then((response) => {
         console.log(response);
         setUserIdValid(true);
@@ -43,7 +58,15 @@ const SignModal = ({ isOpen, closeModal }) => {
       alert("비밀번호를 확인해주세요.");
     }
     axios
-      .post("/api/sign_up/", { userName, userId, password })
+      .post(
+        "/api/sign_up/",
+        { userName, userId, password },
+        {
+          headers: {
+            "X-CSRFToken": csrftoken,
+          },
+        }
+      )
       .then((response) => {
         console.log(response);
         alert("회원 가입에 성공했습니다.");
