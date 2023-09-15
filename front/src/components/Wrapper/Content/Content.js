@@ -6,7 +6,7 @@ const Content = () => {
   const dataSet = useMemo(
     () => [
       {
-        url: "https://data.seoul.go.kr/resources/img/guide/hotspot/구로디지털단지역.jpg",
+        url: "/images/guroDigital.jpg",
         text: ["구로디지털단지역", "혼잡"],
         slide: ["●", "○", "○", "○"],
       },
@@ -53,10 +53,20 @@ const Content = () => {
     <div className="content-box">
       <div id="content-display">
         {/* 여기서 겉면 칠해주는거 */}
-        <div
-          className="inner-content"
-          style={{ backgroundImage: `url("${contentUrl}")` }}
-        ></div>
+        {contentUrl && (
+          <div
+            className="inner-content"
+            style={{
+              backgroundImage: `url("${contentUrl}")`,
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+              height: "90%",
+              borderTopLeftRadius: "20px",
+              borderTopRightRadius: "20px",
+            }}
+          ></div>
+        )}
+
         <div className="explain-content">
           <span>{mainText}</span>
           {subText && <span>{subText}</span>}
