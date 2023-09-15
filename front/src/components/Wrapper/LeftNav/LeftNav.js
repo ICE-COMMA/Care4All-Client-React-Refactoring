@@ -1,6 +1,7 @@
 import React from "react";
 import "./LeftNav.css";
 import Box from "../Box";
+import { Link } from "react-router-dom";
 
 function LeftNav(props) {
   const menuStyle = {
@@ -29,9 +30,15 @@ function LeftNav(props) {
       </Box>
       <Box id="info" style={boxStyle}>
         {/* 메뉴 항목들 */}
-        <div style={menuStyle}>교통정보</div>
-        <div style={menuStyle}>시위정보</div>
-        <div style={menuStyle}>안전정보</div>
+        <div style={menuStyle}>
+          <Link to="/test">교통정보</Link>
+        </div>
+        <div style={menuStyle}>
+          <Link to="/test">시위정보</Link>
+        </div>
+        <div style={menuStyle}>
+          <Link to="/test">안전정보</Link>
+        </div>
       </Box>
       <Box id="contact" style={boxStyle}>
         <div style={menuStyle} onClick={props.openCustomModal}>

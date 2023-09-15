@@ -47,3 +47,22 @@
   margin-top: 5px;
   width: 45%;
 }
+
+.location-content {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  background-color: #fc636b;
+  width: 10vw;
+  cursor: pointer;
+}
+
+#display-map {
+  width: 60%;
+  height: 70vh;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+}
