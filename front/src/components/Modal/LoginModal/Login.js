@@ -23,7 +23,8 @@ const Login = ({ isOpen, closeModal }) => {
       axios.post("api/login", body).then((res) => {
         console.log(res.data);
         if (res.data.code === 200) {
-          console.log("로그인");
+          alert("로그인 성공");
+          closeModal();
         } else {
           console.log("something errror");
         }
