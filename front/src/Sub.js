@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Header from "./components/Header";
-import TestWrapper from "./components/TestWrapper";
 import Footer from "./components/Footer";
 import SignModal from "./components/Modal/SignModal";
 import LocModal from "./components/Modal/LocModal";
 import LoginModal from "./components/Modal/LoginModal";
 import CustomModal from "./components/Modal/CustomModal";
+import SubWrapper from "./components/SubWrapper";
 
 function Main() {
   const [isCustomModalOpen, setIsCustomModalOpen] = useState(false);
@@ -45,7 +45,7 @@ function Main() {
   return (
     <>
       <Header />
-      <TestWrapper
+      <SubWrapper
         openCustomModal={openCustomModal}
         openSignModal={openSignModal}
         openLocModal={openLocModal}

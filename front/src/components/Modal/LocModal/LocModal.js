@@ -11,6 +11,9 @@ const LocModal = ({ isOpen, closeModal }) => {
           latitude = position.coords.latitude;
           longitude = position.coords.longitude;
           alert(`위치 설정을 ${latitude}, ${longitude}로 완료했습니다.`);
+          localStorage.setItem("latitude", latitude);
+          localStorage.setItem("longitude", longitude);
+          closeModal();
         },
         (error) => {
           // 위치 정보를 가져오는 중 에러가 발생했을 때

@@ -1,14 +1,14 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Main from "./Main";
-import Test from "./Test";
+import Sub from "./Sub";
 
 const App = () => {
   return (
     <>
       <Routes>
         <Route path="/" Component={Main}></Route>
-        <Route path="/test" Component={Test}></Route>
+        <Route path="/sub" Component={Sub}></Route>
       </Routes>
     </>
   );

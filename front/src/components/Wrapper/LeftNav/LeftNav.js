@@ -31,7 +31,7 @@ function LeftNav(props) {
       <Box id="info" style={boxStyle}>
         {/* 메뉴 항목들 */}
         <div style={menuStyle}>
-          <Link to="/test">교통정보</Link>
+          <Link to="/sub">교통정보</Link>
         </div>
         <div style={menuStyle}>
           <Link to="/test">시위정보</Link>
