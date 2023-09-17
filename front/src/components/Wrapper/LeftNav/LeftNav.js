@@ -31,13 +31,13 @@ function LeftNav(props) {
       <Box id="info" style={boxStyle}>
         {/* 메뉴 항목들 */}
         <div style={menuStyle}>
-          <Link to="/sub">교통정보</Link>
+          <Link to="/transfer">교통정보</Link>
         </div>
         <div style={menuStyle}>
           <Link to="/test">시위정보</Link>
         </div>
         <div style={menuStyle}>
-          <Link to="/test">안전정보</Link>
+          <Link to="/safety">안전정보</Link>
         </div>
       </Box>
       <Box id="contact" style={boxStyle}>

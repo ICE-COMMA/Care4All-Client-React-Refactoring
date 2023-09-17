@@ -1,9 +1,9 @@
 import React from "react";
-import LeftNav from "./LeftNav";
-import Content from "./Content";
-import RightNav from "./RightNav";
+import LeftNav from "../components/Wrapper/LeftNav";
+import KakaoMap from "../components/Wrapper/KakaoMap/KakaoMap";
+import RightNav from "../components/Wrapper/RightNav";
 
-const Wrapper = (props) => {
+const Transfer = (props) => {
   const wrapperStyle = {
     height: "80%",
     display: "flex",
@@ -12,7 +12,7 @@ const Wrapper = (props) => {
   return (
     <div id="wrapper" style={wrapperStyle}>
       <LeftNav openCustomModal={props.openCustomModal} />
-      <Content></Content>
+      <KakaoMap></KakaoMap>
       <RightNav
         openSignModal={props.openSignModal}
         openLocModal={props.openLocModal}
@@ -22,6 +22,6 @@ const Wrapper = (props) => {
   );
 };
 
-export default Wrapper;
+export default Transfer;
 
 // 상위에서 설정할 속성에 대해서 props로 넘겨줘야함
