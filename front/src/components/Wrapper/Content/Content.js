@@ -11,7 +11,7 @@ const Content = () => {
         slide: ["●", "○", "○", "○"],
       },
       {
-        url: `https://www.smpa.go.kr/common/attachfile/attachfileView.do?attachNo=00232765&imgType=L`,
+        url: `https://www.smpa.go.kr/common/attachfile/attachfileView.do?attachNo=00233321&imgType=L`,
         text: ["시위정보", null],
         slide: ["○", "●", "○", "○"],
       },

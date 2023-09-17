@@ -159,7 +159,7 @@ const SignModal = ({ isOpen, closeModal }) => {
         <option value="behavior">거동장애</option>
         <option value="normal">없음</option>
       </select>
-      <div className="sign-form-btn">
+      <div className="form-btn">
         <div onClick={closeModal}>이전</div>
         <div onClick={handleSubmit}>회원가입</div>
       </div>

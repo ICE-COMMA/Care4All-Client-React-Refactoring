@@ -3,6 +3,18 @@ import Modal from "../Modal";
 import axios from "axios";
 import styled from "styled-components";
 
+const CustomButton = styled.button`
+  border: 1px solid black;
+  width: 12vw;
+  border-radius: 10px;
+  background-color: #fc636b;
+  padding: 0.2rem;
+  margin-top: 0.15rem;
+  margin-bottom: 0.15rem;
+  cursor: pointer;
+  font-weight: bolder;
+`;
+
 const CustomModal = ({ isOpen, closeModal }) => {
   const [select, setSelect] = useState({});
 
@@ -27,17 +39,6 @@ const CustomModal = ({ isOpen, closeModal }) => {
         console.log(error);
       });
   };
-  const CustomButton = styled.button`
-    border: 1px solid black;
-    width: 10vw;
-    border-radius: 10px;
-    background-color: #fc636b;
-    padding: 0.2rem;
-    margin-top: 0.15rem;
-    margin-bottom: 0.15rem;
-    cursor: pointer;
-    font-weight: bolder;
-  `;
 
   return (
     <Modal isOpen={isOpen} closeModal={closeModal}>
@@ -105,8 +106,24 @@ const CustomModal = ({ isOpen, closeModal }) => {
       >
         행사 정보
       </CustomButton>
-      <button onClick={closeModal}>이전</button>
-      <button onClick={handleSubmit}>저장</button>
+      <div className="form-btn">
+        <div
+          onClick={closeModal}
+          style={{
+            width: `5vw`,
+          }}
+        >
+          이전
+        </div>
+        <div
+          onClick={handleSubmit}
+          style={{
+            width: `5vw`,
+          }}
+        >
+          저장
+        </div>
+      </div>
     </Modal>
   );
 };

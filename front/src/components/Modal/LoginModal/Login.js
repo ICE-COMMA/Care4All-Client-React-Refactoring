@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Modal from "../Modal";
 import axios from "axios";
+import styled from "styled-components";
+
+// const loginInput = styled.input``;
 
 const Login = ({ isOpen, closeModal }) => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
+  const idInput = useRef();
   const handleLogin = () => {
     if (!id) {
       return alert("ID를 입력하세요.");
@@ -33,17 +37,22 @@ const Login = ({ isOpen, closeModal }) => {
         type="text"
         id="id"
         value={id}
+        placeholder="아이디"
         onChange={(e) => setId(e.target.value)}
+        ref={idInput}
         required
       />
       <input
         type="password"
         value={password}
+        placeholder="비밀번호"
         onChange={(e) => setPassword(e.target.value)}
         required
       />
-      <div onClick={closeModal}>이전</div>
-      <button onClick={handleLogin}>Login</button>
+      <div className="form-btn">
+        <div onClick={closeModal}>이전</div>
+        <div onClick={handleLogin}>로그인</div>
+      </div>
     </Modal>
   );
 };
