@@ -7,7 +7,6 @@ const CustomButton = styled.button`
   border: 1px solid black;
   width: 12vw;
   border-radius: 10px;
-  background-color: #fc636b;
   padding: 0.2rem;
   margin-top: 0.15rem;
   margin-bottom: 0.15rem;
@@ -17,14 +16,25 @@ const CustomButton = styled.button`
 
 const CustomModal = ({ isOpen, closeModal }) => {
   const [select, setSelect] = useState({});
-
+  const [buttonColor, setButtonColor] = useState([
+    "pink",
+    "pink",
+    "pink",
+    "pink",
+    "pink",
+    "pink",
+    "pink",
+    "pink",
+  ]);
   const onClick = (e) => {
+    const updatedColors = [...buttonColor];
+    updatedColors[parseInt(e.target.name)] = "blue";
+    setButtonColor(updatedColors);
     setSelect({
       ...select,
       [e.target.id]: true,
     });
   };
-
   const handleSubmit = () => {
     console.log(select);
 
@@ -45,64 +55,88 @@ const CustomModal = ({ isOpen, closeModal }) => {
       <CustomButton
         className="custom-info"
         id="custom-demo"
-        name="demo"
+        name="0"
         onClick={onClick}
+        style={{
+          backgroundColor: `${buttonColor[0]}`,
+        }}
       >
         시위 정보
       </CustomButton>
       <CustomButton
         className="custom-info"
         id="custom-elevator"
-        name="elevator"
+        name="1"
         onClick={onClick}
+        style={{
+          backgroundColor: `${buttonColor[1]}`,
+        }}
       >
         지하철 승강기 정보
       </CustomButton>
       <CustomButton
         className="custom-info"
         id="custom-population"
-        name="population"
+        name="2"
         onClick={onClick}
+        style={{
+          backgroundColor: `${buttonColor[2]}`,
+        }}
       >
         인구밀집 정보
       </CustomButton>
       <CustomButton
         className="custom-info"
         id="custom-predict"
-        name="predict"
+        name="3"
         onClick={onClick}
+        style={{
+          backgroundColor: `${buttonColor[3]}`,
+        }}
       >
         혼잡도 예측
       </CustomButton>
       <CustomButton
         className="custom-info"
         id="custom-safety"
-        name="safety"
+        name="4"
         onClick={onClick}
+        style={{
+          backgroundColor: `${buttonColor[4]}`,
+        }}
       >
         치안 정보
       </CustomButton>
       <CustomButton
         className="custom-info"
         id="custom-safey-loc"
-        name="safeyLoc"
+        name="5"
         onClick={onClick}
+        style={{
+          backgroundColor: `${buttonColor[5]}`,
+        }}
       >
         안심 시설 정보
       </CustomButton>
       <CustomButton
         className="custom-info"
         id="custom-low-bus"
-        name="lowBus"
+        name="6"
         onClick={onClick}
+        style={{
+          backgroundColor: `${buttonColor[6]}`,
+        }}
       >
         저상 버스 정보
       </CustomButton>
       <CustomButton
         className="custom-info"
         id="custom-festival"
-        name="festival"
+        name="7"
         onClick={onClick}
+        style={{
+          backgroundColor: `${buttonColor[7]}`,
+        }}
       >
         행사 정보
       </CustomButton>
