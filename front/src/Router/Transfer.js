@@ -1,7 +1,7 @@
 import React from "react";
-import LeftNav from "../components/Wrapper/LeftNav";
-import KakaoMap from "../components/Wrapper/KakaoMap/KakaoMap";
-import RightNav from "../components/Wrapper/RightNav";
+import LeftNav from "../Components/Function/LeftNav";
+import KakaoMap from "../Components/Function/Map/KakaoMap";
+import RightNav from "../Components/Function/RightNav";
 
 const Transfer = (props) => {
   const wrapperStyle = {

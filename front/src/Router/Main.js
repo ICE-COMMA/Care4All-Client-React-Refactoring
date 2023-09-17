@@ -1,7 +1,7 @@
 import React from "react";
-import LeftNav from "../components/Wrapper/LeftNav";
-import Content from "../components/Wrapper/Content";
-import RightNav from "../components/Wrapper/RightNav";
+import LeftNav from "../Components/Function/LeftNav";
+import Content from "../Components/Function/Content";
+import RightNav from "../Components/Function/RightNav";
 
 const Main = (props) => {
   const wrapperStyle = {

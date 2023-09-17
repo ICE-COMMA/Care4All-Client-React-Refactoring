@@ -1,17 +1,8 @@
 import React, { useEffect } from "react";
-import "./Kakao.css";
-import SpeechService from "../SpeechService/SpeechService";
-// import styled from "styled-components";
+import "../Kakao.css";
+import SpeechService from "../../SpeechService/SpeechService";
 
 const { kakao } = window;
-
-// const InnerContet = styled.div`
-//               backgroundSize: "cover",
-//               backgroundRepeat: "no-repeat",
-//               height: "90%",
-//               borderTopLeftRadius: "20px",
-//               borderTopRightRadius: "20px",
-// `;
 
 const KakaoMap = () => {
   useEffect(() => {
@@ -24,6 +15,7 @@ const KakaoMap = () => {
       level: 3,
     };
     const map = new kakao.maps.Map(continer, options);
+    console.log(map);
   }, []);
 
   return (

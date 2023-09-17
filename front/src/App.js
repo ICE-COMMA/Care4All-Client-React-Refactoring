@@ -3,12 +3,12 @@ import { Routes, Route } from "react-router-dom";
 import Main from "./Router/Main";
 import Transfer from "./Router/Transfer";
 import Safety from "./Router/Safety";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import SignModal from "./components/Modal/SignModal";
-import LocModal from "./components/Modal/LocModal";
-import LoginModal from "./components/Modal/LoginModal";
-import CustomModal from "./components/Modal/CustomModal";
+import Header from "./Components/Header";
+import Footer from "./Components/Footer";
+import SignModal from "./Components/Modal/SignModal";
+import LocModal from "./Components/Modal/LocModal";
+import LoginModal from "./Components/Modal/LoginModal";
+import CustomModal from "./Components/Modal/CustomModal";
 
 const App = () => {
   const [isCustomModalOpen, setIsCustomModalOpen] = useState(false);
