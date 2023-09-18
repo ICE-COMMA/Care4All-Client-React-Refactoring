@@ -7,7 +7,6 @@ const Modal = ({ isOpen, closeModal, children }) => {
   return (
     <div
       className="modal-container"
-      id="signup-container"
       ref={modalRef}
       onClick={(e) => {
         if (e.target === modalRef.current) {
@@ -15,9 +14,7 @@ const Modal = ({ isOpen, closeModal, children }) => {
         }
       }}
     >
-      <div className="modal-content" id="signup-content">
-        {children}
-      </div>
+      <div className="modal-content">{children}</div>
     </div>
   );
 };

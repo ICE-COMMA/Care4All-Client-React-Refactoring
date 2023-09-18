@@ -11,12 +11,6 @@ const SignModal = ({ isOpen, closeModal }) => {
   const [message, setMessage] = useState("비밀번호가 일치하지 않습니다.");
   const [userIdValid, setUserIdValid] = useState(false);
   const [userPwValid, setUserPwValid] = useState(false);
-
-  function getCookie(name) {
-    let value = "; " + document.cookie;
-    let parts = value.split("; " + name + "=");
-    if (parts.length === 2) return parts.pop().split(";").shift();
-  }
   const csrftoken = getCookie("csrftoken");
 
   useEffect(() => {
@@ -42,7 +36,11 @@ const SignModal = ({ isOpen, closeModal }) => {
       )
       .then((response) => {
         console.log(response);
-        setUserIdValid(true);
+        if (response.data.valid) {
+          setUserIdValid(true);
+        } else {
+          setUserIdValid(false);
+        }
       })
       .catch((error) => {
         // setMessage("서버 오류");
@@ -67,10 +65,14 @@ const SignModal = ({ isOpen, closeModal }) => {
           },
         }
       )
-      .then((response) => {
-        console.log(response);
-        alert("회원 가입에 성공했습니다.");
-        closeModal();
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.code === 200) {
+          alert("회원가입 성공");
+          closeModal();
+        } else {
+          console.log("something errror");
+        }
       })
       .catch((error) => {
         // setMessage("회원가입 실패!");
@@ -168,3 +170,9 @@ const SignModal = ({ isOpen, closeModal }) => {
 };
 
 export default SignModal;
+
+function getCookie(name) {
+  let value = "; " + document.cookie;
+  let parts = value.split("; " + name + "=");
+  if (parts.length === 2) return parts.pop().split(";").shift();
+}
