@@ -7,10 +7,19 @@ const SignModal = ({ isOpen, closeModal }) => {
   const [userId, setUserId] = useState(null);
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [birth, setBirth] = useState(null);
+  const [gender, setGender] = useState(null);
+  const [impaired, setImpaired] = useState(null);
 
   const [message, setMessage] = useState("비밀번호가 일치하지 않습니다.");
   const [userIdValid, setUserIdValid] = useState(false);
   const [userPwValid, setUserPwValid] = useState(false);
+
+  function getCookie(name) {
+    let value = "; " + document.cookie;
+    let parts = value.split("; " + name + "=");
+    if (parts.length === 2) return parts.pop().split(";").shift();
+  }
   const csrftoken = getCookie("csrftoken");
 
   useEffect(() => {
@@ -37,8 +46,10 @@ const SignModal = ({ isOpen, closeModal }) => {
       .then((response) => {
         console.log(response);
         if (response.data.valid) {
+          alert("사용 가능한 아이디입니다.");
           setUserIdValid(true);
         } else {
+          alert("사용 중인 아이디입니다.");
           setUserIdValid(false);
         }
       })
@@ -58,7 +69,7 @@ const SignModal = ({ isOpen, closeModal }) => {
     axios
       .post(
         "/api/sign_up/",
-        { userName, userId, password },
+        { userName, userId, password, birth, gender, impaired },
         {
           headers: {
             "X-CSRFToken": csrftoken,
@@ -67,7 +78,7 @@ const SignModal = ({ isOpen, closeModal }) => {
       )
       .then((res) => {
         console.log(res.data);
-        if (res.data.code === 200) {
+        if (res.data.success) {
           alert("회원가입 성공");
           closeModal();
         } else {
@@ -134,14 +145,18 @@ const SignModal = ({ isOpen, closeModal }) => {
         min="1900-01-01"
         name="date"
         placeholder="생년월일"
-        onChange={(e) => console.log(e.target.value)}
+        onChange={(e) => {
+          setBirth(e.target.value);
+        }}
         required
       />
       <select
         name="gender"
         id="gender"
         className="sign-up-input"
-        onChange={(e) => console.log(e.target.value)}
+        onChange={(e) => {
+          setGender(e.target.value);
+        }}
         required
       >
         <option value="gender-init">* 성별</option>
@@ -152,7 +167,9 @@ const SignModal = ({ isOpen, closeModal }) => {
         name="impaired"
         id="disabled"
         className="sign-up-input"
-        onChange={(e) => console.log(e.target.value)}
+        onChange={(e) => {
+          setImpaired(e.target.value);
+        }}
         required
       >
         <option value="impaired-init">* 장애여부</option>
@@ -170,9 +187,3 @@ const SignModal = ({ isOpen, closeModal }) => {
 };
 
 export default SignModal;
-
-function getCookie(name) {
-  let value = "; " + document.cookie;
-  let parts = value.split("; " + name + "=");
-  if (parts.length === 2) return parts.pop().split(";").shift();
-}

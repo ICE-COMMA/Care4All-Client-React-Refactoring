@@ -15,7 +15,17 @@ const CustomButton = styled.button`
 `;
 
 const CustomModal = ({ isOpen, closeModal }) => {
-  const [select, setSelect] = useState({});
+  const [select, setSelect] = useState({
+    "custom-demo": false,
+    "custom-elevator": false,
+    "custom-population": false,
+    "custom-predict": false,
+    "custom-safety": false,
+    "custom-safey-loc": false,
+    "custom-low-bus": false,
+    "custom-festival": false,
+  });
+
   const [buttonColor, setButtonColor] = useState([
     "pink",
     "pink",
