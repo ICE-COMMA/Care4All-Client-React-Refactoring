@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import Modal from "../Modal";
 import axios from "axios";
-import styled from "styled-components";
+// import styled from "styled-components";
 
 // const loginInput = styled.input``;
 
@@ -9,7 +9,12 @@ const Login = ({ isOpen, closeModal }) => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const idInput = useRef();
-
+  let username = null;
+  function getCookie(name) {
+    let value = "; " + document.cookie;
+    let parts = value.split("; " + name + "=");
+    if (parts.length === 2) return parts.pop().split(";").shift();
+  }
   const csrftoken = getCookie("csrftoken");
   const handleLogin = () => {
     if (!id) {
@@ -17,21 +22,22 @@ const Login = ({ isOpen, closeModal }) => {
     } else if (!password) {
       return alert("Password를 입력하세요.");
     } else {
-      console.log({ id, password });
+      let body = {
+        id,
+        password,
+      };
+      console.log(body);
       axios
-        .post(
-          "/api/login/",
-          { id, password },
-          {
-            headers: {
-              "X-CSRFToken": csrftoken,
-            },
-          }
-        )
+        .post("/api/login", body, {
+          headers: {
+            "X-CSRFToken": csrftoken,
+          },
+        })
         .then((res) => {
           console.log(res.data);
-          if (res.data.code === 200) {
-            alert("로그인 성공");
+          if (res.data.success) {
+            username = res.data.username;
+            alert(`${username}님 반갑습니다!`);
             closeModal();
           } else {
             console.log("something errror");
@@ -67,9 +73,3 @@ const Login = ({ isOpen, closeModal }) => {
 };
 
 export default Login;
-
-function getCookie(name) {
-  let value = "; " + document.cookie;
-  let parts = value.split("; " + name + "=");
-  if (parts.length === 2) return parts.pop().split(";").shift();
-}
