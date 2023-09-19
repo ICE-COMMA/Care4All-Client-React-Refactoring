@@ -9,8 +9,8 @@ const KakaoMap = () => {
     const continer = document.getElementById("content-display");
     const options = {
       center: new kakao.maps.LatLng(
-        localStorage.getItem("latitude"),
-        localStorage.getItem("longitude")
+        sessionStorage.getItem("latitude"),
+        sessionStorage.getItem("longitude")
       ),
       level: 3,
     };
