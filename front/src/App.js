@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Main from "./pages/Main";
 import Transfer from "./pages/Transfer";
 import Safety from "./pages/Safety";
+import Mypage from "./pages/Mypage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import SignModal from "./components/Modal/SignModal";
@@ -64,6 +65,17 @@ const App = () => {
           path="/transfer"
           element={
             <Transfer
+              openCustomModal={openCustomModal}
+              openSignModal={openSignModal}
+              openLocModal={openLocModal}
+              openLoginModal={openLoginModal}
+            />
+          }
+        ></Route>
+        <Route
+          path="/mypage"
+          element={
+            <Mypage
               openCustomModal={openCustomModal}
               openSignModal={openSignModal}
               openLocModal={openLocModal}

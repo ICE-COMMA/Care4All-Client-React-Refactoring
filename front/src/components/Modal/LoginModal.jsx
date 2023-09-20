@@ -28,7 +28,7 @@ const LoginModal = ({ isOpen, closeModal }) => {
       };
       console.log(body);
       axios
-        .post("/api/login", body, {
+        .post("/api/login/", body, {
           headers: {
             "X-CSRFToken": csrftoken,
           },
@@ -39,9 +39,14 @@ const LoginModal = ({ isOpen, closeModal }) => {
             username = res.data.username;
             alert(`${username}님 반갑습니다!`);
             closeModal();
+            localStorage.setItem("username", username);
           } else {
             console.log("something errror");
           }
+        })
+        .catch((e) => {
+          alert("아이디나 비밀번호를 확인해주세요!");
+          closeModal();
         });
     }
   };

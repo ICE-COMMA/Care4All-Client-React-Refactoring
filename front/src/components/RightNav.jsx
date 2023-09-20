@@ -1,25 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/rightNav.css";
 import Box from "./Box";
 
 function RightNav(props) {
-  const isUserLoggedIn = false;
+  const [loginFlag, setLoginFlag] = useState(false);
+  useEffect(() => {
+    setLoginFlag(true);
+  }, [localStorage.getItem("username")]);
   return (
     <>
       <nav id="right-nav" className="right-nav">
         <Box id="user" className="box">
-          {isUserLoggedIn ? (
+          {loginFlag && localStorage.getItem("username") ? (
             // 로그인한 경우
             <>
               <div id="greeting" className="menu">
-                Hello user!
-                {/* {user로 나중에 변경하기} */}
+                Hello {localStorage.getItem("username")}
               </div>
               <div id="my-page" className="signup-mypage menu">
                 마이페이지
               </div>
-              <div id="logout" className="login-logout menu">
+              <div
+                id="logout"
+                className="login-logout menu"
+                onClick={() => {
+                  localStorage.removeItem("username");
+                  setLoginFlag(false);
+                }}
+              >
                 로그아웃
+                {/* axios 관련 login 로직 추가하기 */}
               </div>
             </>
           ) : (
