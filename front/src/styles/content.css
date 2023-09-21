@@ -1,12 +1,11 @@
 .content-box {
   flex: 6;
-  height: 100%;
+  height: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   padding: 0 8vw;
-  padding-top: 7vh;
 }
 
 .explain-content {
@@ -20,6 +19,7 @@
   border-radius: 20px;
   border: 2.5px solid #d9d9d9;
   width: 100%;
+  height: 80%;
 }
 .inner-content {
   background-image: url("https://data.seoul.go.kr/resources/img/guide/hotspot/구로디지털단지역.jpg");

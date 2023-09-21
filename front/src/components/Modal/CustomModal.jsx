@@ -47,17 +47,21 @@ const CustomModal = ({ isOpen, closeModal }) => {
   };
   const handleSubmit = () => {
     console.log(select);
-
-    axios
-      .post("/api/custom/", { select })
-      .then((response) => {
-        console.log(response);
-        alert("커스터마이징 성공");
-        closeModal();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (localStorage.getItem("username") === null) {
+      // alert()
+      console.log("login 먼저 해주세요");
+    } else {
+      axios
+        .post("/api/custom/", { select })
+        .then((response) => {
+          console.log(response);
+          alert("커스터마이징 성공");
+          closeModal();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   return (
@@ -152,7 +156,19 @@ const CustomModal = ({ isOpen, closeModal }) => {
       </CustomButton>
       <div className="form-btn">
         <div
-          onClick={closeModal}
+          onClick={() => {
+            closeModal();
+            setButtonColor([
+              "pink",
+              "pink",
+              "pink",
+              "pink",
+              "pink",
+              "pink",
+              "pink",
+              "pink",
+            ]);
+          }}
           style={{
             width: `5vw`,
           }}
@@ -160,7 +176,19 @@ const CustomModal = ({ isOpen, closeModal }) => {
           이전
         </div>
         <div
-          onClick={handleSubmit}
+          onClick={() => {
+            handleSubmit();
+            setButtonColor([
+              "pink",
+              "pink",
+              "pink",
+              "pink",
+              "pink",
+              "pink",
+              "pink",
+              "pink",
+            ]);
+          }}
           style={{
             width: `5vw`,
           }}

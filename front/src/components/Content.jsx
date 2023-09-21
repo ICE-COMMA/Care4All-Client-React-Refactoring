@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
-import SpeechService from "./SpeechService";
 import "../styles/content.css";
 
 const Content = () => {
@@ -78,7 +77,6 @@ const Content = () => {
         <span className="slide3">{slideInfo[2]}</span>
         <span className="slide4">{slideInfo[3]}</span>
       </div>
-      <SpeechService />
     </div>
   );
 };

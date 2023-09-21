@@ -1,0 +1,43 @@
+.content-box {
+  flex: 6;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 8vw;
+}
+
+/* 테이블 전체 스타일 */
+table {
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+  border-collapse: collapse;
+}
+
+/* 테이블 헤더 스타일 */
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  padding: 0.25rem;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+/* 테이블 본문 스타일 */
+td {
+  padding: 0.25rem;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+/* 짝수 행 배경색 스타일 */
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* 홀수 행 배경색 스타일 */
+tr:nth-child(odd) {
+  background-color: #ffffff;
+}

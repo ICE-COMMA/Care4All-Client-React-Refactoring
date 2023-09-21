@@ -112,9 +112,7 @@ const LocModal = ({ isOpen, closeModal }) => {
               setModalStatus(false);
               closeModal();
             }}
-          >
-            이전
-          </div>
+          ></div>
         )}
       </div>
     </div>

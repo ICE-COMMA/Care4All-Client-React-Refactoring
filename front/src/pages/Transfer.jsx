@@ -1,9 +1,64 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import LeftNav from "../components/LeftNav";
 import RightNav from "../components/RightNav";
-import KakaoMap from "../components/Map/KakaoMap";
+const { kakao } = window;
 
 const Transfer = (props) => {
+  const [busNum, setBusNum] = useState(null);
+  const [lat, setLat] = useState(localStorage.getItem("latitude"));
+  const [lon, setLon] = useState(localStorage.getItem("longitude"));
+
+  useEffect(() => {
+    const continer = document.getElementById("content-display");
+    const options = {
+      center: new kakao.maps.LatLng(lat, lon),
+      level: 3,
+    };
+    const map = new kakao.maps.Map(continer, options);
+    console.log(lat, lon);
+  }, [lat, lon]);
+
+  const handleBusInputChange = (e) => {
+    setBusNum(e.target.value);
+  };
+
+  const handleSearchClick = () => {
+    console.log(busNum);
+    axios.get(`api/get_bus_route/${busNum}`).then((response) => {
+      console.log(response);
+
+      const data = response.data;
+      if (data.station.length === 0) {
+        alert("No results found.");
+      } else {
+        // Find closest station
+        let closestStationInfo = null;
+        let shortestDistance = Number.MAX_VALUE;
+
+        data.station.forEach((station) => {
+          const x2 = station.x;
+          const y2 = station.y;
+          const distance = Math.sqrt(
+            Math.pow(x2 - lon, 2) + Math.pow(y2 - lat, 2)
+          );
+          if (distance < shortestDistance) {
+            closestStationInfo = station;
+            shortestDistance = distance;
+          }
+        });
+
+        // Perform other actions (e.g., alert message, map markers) here
+        alert(
+          `${busNum}번 버스가 지나는 가장 가까운 정류장은 ${closestStationInfo.name}으로 이동합니다.`
+        );
+        setLat(closestStationInfo.y);
+        setLon(closestStationInfo.x);
+        // Additional code for map markers and actions can be added here
+      }
+    });
+  };
+
   const wrapperStyle = {
     height: "80%",
     display: "flex",
@@ -12,7 +67,23 @@ const Transfer = (props) => {
   return (
     <div id="wrapper" style={wrapperStyle}>
       <LeftNav openCustomModal={props.openCustomModal} />
-      <KakaoMap></KakaoMap>
+      <div className="content-box">
+        <div id="content-display"></div>
+        <div id="search-bus-box" className="search-container">
+          <input
+            type="text"
+            id="bus-input"
+            className="search-input"
+            placeholder="버스 노선을 검색해주세요."
+            value={busNum}
+            onChange={handleBusInputChange}
+          />
+          <button className="search-button" onClick={handleSearchClick}>
+            검색
+          </button>
+        </div>
+      </div>
+
       <RightNav
         openSignModal={props.openSignModal}
         openLocModal={props.openLocModal}
@@ -23,5 +94,3 @@ const Transfer = (props) => {
 };
 
 export default Transfer;
-
-// 상위에서 설정할 속성에 대해서 props로 넘겨줘야함

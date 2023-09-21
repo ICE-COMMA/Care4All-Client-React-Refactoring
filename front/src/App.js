@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Routes, Route } from "react-router-dom";
 import Main from "./pages/Main";
 import Transfer from "./pages/Transfer";
@@ -13,6 +14,26 @@ import CustomModal from "./components/Modal/CustomModal";
 import DemoInfo from "./pages/DemoInfo";
 
 const App = () => {
+  const [spwStatus, setSpwStatus] = useState([]);
+  function getCookie(name) {
+    let value = "; " + document.cookie;
+    let parts = value.split("; " + name + "=");
+    if (parts.length === 2) return parts.pop().split(";").shift();
+  }
+  const csrftoken = getCookie("csrftoken");
+  useEffect(() => {
+    axios
+      .get("/api/", {
+        headers: {
+          "X-CSRFToken": csrftoken,
+        },
+      })
+      .then((res) => {
+        console.log(res.data.spw);
+        setSpwStatus(res.data.spw);
+      })
+      .catch((error) => console.log(error));
+  }, []);
   const [isCustomModalOpen, setIsCustomModalOpen] = useState(false);
   const openCustomModal = () => {
     setIsCustomModalOpen(true);
@@ -48,7 +69,7 @@ const App = () => {
   };
   return (
     <>
-      <Header />
+      <Header spwStatus={spwStatus} />
 
       <Routes>
         <Route

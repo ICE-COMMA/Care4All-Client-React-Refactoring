@@ -16,13 +16,13 @@ function RightNav(props) {
             // 로그인한 경우
             <>
               <div id="greeting" className="menu">
-                Hello {localStorage.getItem("username")}
+                {localStorage.getItem("username")}님 반가워요
               </div>
-              <div id="my-page" className="signup-mypage menu">
+              {/* <div id="my-page" className="signup-mypage menu">
                 <Link to={`/my_page/${localStorage.getItem("id")}`}>
                   마이페이지
                 </Link>
-              </div>
+              </div> */}
               <div
                 id="logout"
                 className="login-logout menu"

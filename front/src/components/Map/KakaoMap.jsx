@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import "../../styles/kakao.css";
-import SpeechService from "../SpeechService";
 
 const { kakao } = window;
 
@@ -22,7 +21,6 @@ const KakaoMap = () => {
     <>
       <div className="content-box">
         <div id="content-display"></div>
-        <SpeechService />
       </div>
     </>
   );
