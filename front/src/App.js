@@ -3,6 +3,7 @@ import axios from "axios";
 import { Routes, Route } from "react-router-dom";
 import Main from "./pages/Main";
 import Transfer from "./pages/Transfer";
+import Population from "./pages/Population";
 import Safety from "./pages/Safety";
 import Mypage from "./pages/Mypage";
 import Header from "./components/Header";
@@ -76,6 +77,17 @@ const App = () => {
           path="/"
           element={
             <Main
+              openCustomModal={openCustomModal}
+              openSignModal={openSignModal}
+              openLocModal={openLocModal}
+              openLoginModal={openLoginModal}
+            />
+          }
+        ></Route>
+        <Route
+          path="/population"
+          element={
+            <Population
               openCustomModal={openCustomModal}
               openSignModal={openSignModal}
               openLocModal={openLocModal}
