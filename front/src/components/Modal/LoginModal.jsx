@@ -40,6 +40,7 @@ const LoginModal = ({ isOpen, closeModal }) => {
             alert(`${username}님 반갑습니다!`);
             closeModal();
             localStorage.setItem("username", username);
+            localStorage.setItem("id", body.id);
           } else {
             console.log("something errror");
           }

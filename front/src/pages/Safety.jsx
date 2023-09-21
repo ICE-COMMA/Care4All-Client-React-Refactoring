@@ -2,6 +2,7 @@ import React from "react";
 import LeftNav from "../components/LeftNav";
 import RightNav from "../components/RightNav";
 import SafetyMap from "../components/Map/SafetyMap";
+import KakaoMap from "../components/Map/KakaoMap";
 
 const Safety = (props) => {
   const wrapperStyle = {
@@ -12,7 +13,7 @@ const Safety = (props) => {
   return (
     <div id="wrapper" style={wrapperStyle}>
       <LeftNav openCustomModal={props.openCustomModal} />
-      <SafetyMap></SafetyMap>
+      <KakaoMap></KakaoMap>
       <RightNav
         openSignModal={props.openSignModal}
         openLocModal={props.openLocModal}

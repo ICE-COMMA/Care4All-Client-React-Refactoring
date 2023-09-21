@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "../styles/rightNav.css";
 import Box from "./Box";
 
@@ -18,13 +19,16 @@ function RightNav(props) {
                 Hello {localStorage.getItem("username")}
               </div>
               <div id="my-page" className="signup-mypage menu">
-                마이페이지
+                <Link to={`/my_page/${localStorage.getItem("id")}`}>
+                  마이페이지
+                </Link>
               </div>
               <div
                 id="logout"
                 className="login-logout menu"
                 onClick={() => {
                   localStorage.removeItem("username");
+                  localStorage.removeItem("id");
                   setLoginFlag(false);
                 }}
               >

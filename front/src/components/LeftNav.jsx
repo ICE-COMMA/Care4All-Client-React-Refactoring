@@ -34,7 +34,7 @@ function LeftNav(props) {
           <Link to="/transfer">교통정보</Link>
         </div>
         <div style={menuStyle}>
-          <Link to="/test">시위정보</Link>
+          <Link to="/get_demo_today">시위정보</Link>
         </div>
         <div style={menuStyle}>
           <Link to="/safety">안전정보</Link>

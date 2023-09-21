@@ -12,8 +12,8 @@ function SafetyMap() {
   useEffect(() => {
     const fetchDataAndInitializeMap = async () => {
       try {
-        const retrievedX1 = localStorage.getItem("longitude");
-        const retrievedY1 = localStorage.getItem("latitude");
+        const retrievedX1 = sessionStorage.getItem("longitude");
+        const retrievedY1 = sessionStorage.getItem("latitude");
         setX1(retrievedX1);
         setY1(retrievedY1);
         console.log(x1, y1);

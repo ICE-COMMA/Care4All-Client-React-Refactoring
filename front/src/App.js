@@ -10,6 +10,7 @@ import SignModal from "./components/Modal/SignModal";
 import LocModal from "./components/Modal/LocModal";
 import LoginModal from "./components/Modal/LoginModal";
 import CustomModal from "./components/Modal/CustomModal";
+import DemoInfo from "./pages/DemoInfo";
 
 const App = () => {
   const [isCustomModalOpen, setIsCustomModalOpen] = useState(false);
@@ -73,7 +74,7 @@ const App = () => {
           }
         ></Route>
         <Route
-          path="/mypage"
+          path="/my_page/:id"
           element={
             <Mypage
               openCustomModal={openCustomModal}
@@ -87,6 +88,17 @@ const App = () => {
           path="/safety"
           element={
             <Safety
+              openCustomModal={openCustomModal}
+              openSignModal={openSignModal}
+              openLocModal={openLocModal}
+              openLoginModal={openLoginModal}
+            />
+          }
+        ></Route>
+        <Route
+          path="/get_demo_today"
+          element={
+            <DemoInfo
               openCustomModal={openCustomModal}
               openSignModal={openSignModal}
               openLocModal={openLocModal}
