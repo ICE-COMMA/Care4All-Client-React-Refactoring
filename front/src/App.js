@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { useSpeechRecognition } from "react-speech-kit";
 import { Routes, Route } from "react-router-dom";
 import Main from "./pages/Main";
 import Transfer from "./pages/Transfer";
@@ -15,14 +15,7 @@ import CustomModal from "./components/Modal/CustomModal";
 import DemoInfo from "./pages/DemoInfo";
 
 const App = () => {
-  const [isCustomModalOpen, setIsCustomModalOpen] = useState(false);
-  const openCustomModal = () => {
-    setIsCustomModalOpen(true);
-  };
-  const closeCustomModal = () => {
-    setIsCustomModalOpen(false);
-  };
-
+  const [value, setValue] = useState("");
   const [isSignModalOpen, setIsSignModalOpen] = useState(false);
   const openSignModal = () => {
     setIsSignModalOpen(true);
@@ -48,6 +41,40 @@ const App = () => {
   const closeLoginModal = () => {
     setisLoginModalOpen(false);
   };
+
+  const { listen, listening, stop } = useSpeechRecognition({
+    onResult: (result) => {
+      setValue(result);
+      console.log(result);
+      if (result.includes("교통")) {
+        window.location.href = "/transfer";
+      }
+      if (result.includes("인구")) {
+        window.location.href = "/population";
+      }
+      if (result.includes("시위")) {
+        window.location.href = "/get_demo_today";
+      }
+      if (result.includes("안전")) {
+        window.location.href = "/safety";
+      }
+      if (result.includes("메인")) {
+        window.location.href = "/";
+      }
+    },
+  });
+  useEffect(() => {
+    listen();
+  });
+
+  const [isCustomModalOpen, setIsCustomModalOpen] = useState(false);
+  const openCustomModal = () => {
+    setIsCustomModalOpen(true);
+  };
+  const closeCustomModal = () => {
+    setIsCustomModalOpen(false);
+  };
+
   return (
     <>
       <Header />
