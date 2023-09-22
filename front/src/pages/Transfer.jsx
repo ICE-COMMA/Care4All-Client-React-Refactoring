@@ -16,7 +16,12 @@ const Transfer = (props) => {
       level: 3,
     };
     const map = new kakao.maps.Map(continer, options);
-    console.log(lat, lon);
+    const marker = new kakao.maps.Marker({
+      map: map,
+      position: new kakao.maps.LatLng(lat, lon),
+      clickable: true,
+    });
+    marker.setMap(map);
   }, [lat, lon]);
 
   const handleBusInputChange = (e) => {
@@ -26,8 +31,6 @@ const Transfer = (props) => {
   const handleSearchClick = () => {
     console.log(busNum);
     axios.get(`api/get_bus_route/${busNum}`).then((response) => {
-      console.log(response);
-
       const data = response.data;
       if (data.station.length === 0) {
         alert("No results found.");
@@ -35,6 +38,7 @@ const Transfer = (props) => {
         // Find closest station
         let closestStationInfo = null;
         let shortestDistance = Number.MAX_VALUE;
+        let route_id = null;
 
         data.station.forEach((station) => {
           const x2 = station.x;
@@ -45,6 +49,7 @@ const Transfer = (props) => {
           if (distance < shortestDistance) {
             closestStationInfo = station;
             shortestDistance = distance;
+            route_id = data.route_id;
           }
         });
 
@@ -54,7 +59,24 @@ const Transfer = (props) => {
         );
         setLat(closestStationInfo.y);
         setLon(closestStationInfo.x);
-        // Additional code for map markers and actions can be added here
+        function getCookie(name) {
+          let value = "; " + document.cookie;
+          let parts = value.split("; " + name + "=");
+          if (parts.length === 2) return parts.pop().split(";").shift();
+        }
+        const csrftoken = getCookie("csrftoken");
+        axios
+          .get(`api/get_bus_pos/${route_id}/`, {
+            headers: {
+              "X-CSRFToken": csrftoken,
+            },
+          })
+          .then((res) => {
+            console.log(res.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       }
     });
   };
