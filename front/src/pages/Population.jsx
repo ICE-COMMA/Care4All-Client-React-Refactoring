@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-// import axios from "axios";
 import LeftNav from "../components/LeftNav";
 import RightNav from "../components/RightNav";
-import Content from "../components/Content";
+import "../styles/ChartComponent.css";
+import ChartComponent from "../components/Modal/ChartComponent";
 
 const Main = (props) => {
   const [isLogin, setisLogin] = useState(false);
@@ -17,12 +17,15 @@ const Main = (props) => {
     height: "80%",
     display: "flex",
     padding: "10vh 15vw",
+    width: "100%",
   };
 
   return (
     <div id="wrapper" style={wrapperStyle}>
       <LeftNav openCustomModal={props.openCustomModal} />
-      <Content></Content>
+      <div className="content-box">
+        <ChartComponent></ChartComponent>
+      </div>
       <RightNav
         openSignModal={props.openSignModal}
         openLocModal={props.openLocModal}

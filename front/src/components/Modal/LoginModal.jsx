@@ -61,6 +61,10 @@ const LoginModal = ({ isOpen, closeModal }) => {
         placeholder="아이디"
         onChange={(e) => setId(e.target.value)}
         ref={idInput}
+        style={{
+          width: "100%",
+          height: "20%",
+        }}
         required
       />
       <input
@@ -68,6 +72,10 @@ const LoginModal = ({ isOpen, closeModal }) => {
         value={password}
         placeholder="비밀번호"
         onChange={(e) => setPassword(e.target.value)}
+        style={{
+          width: "100%",
+          height: "20%",
+        }}
         required
       />
       <div className="form-btn">

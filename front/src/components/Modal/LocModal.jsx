@@ -91,6 +91,10 @@ const LocModal = ({ isOpen, closeModal }) => {
             id="gpsLocation"
             className="location-content"
             onClick={handleGps}
+            style={{
+              width: "90%",
+              height: "30%",
+            }}
           >
             현재 위치로 설정
           </div>
@@ -101,6 +105,10 @@ const LocModal = ({ isOpen, closeModal }) => {
             id="map-location"
             className="location-content"
             onClick={handleMap}
+            style={{
+              width: "90%",
+              height: "30%",
+            }}
           >
             지도를 통해 설정
           </div>

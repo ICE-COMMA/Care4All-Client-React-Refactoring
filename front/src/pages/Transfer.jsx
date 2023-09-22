@@ -6,6 +6,7 @@ const { kakao } = window;
 
 const Transfer = (props) => {
   const [busNum, setBusNum] = useState(null);
+  const [busInfo, setBusInfo] = useState(null);
   const [lat, setLat] = useState(localStorage.getItem("latitude"));
   const [lon, setLon] = useState(localStorage.getItem("longitude"));
 
@@ -73,6 +74,7 @@ const Transfer = (props) => {
           })
           .then((res) => {
             console.log(res.data);
+            setBusInfo(`${busNum}번 버스 3분 뒤 도착 <저상버스>`);
           })
           .catch((error) => {
             console.log(error);
@@ -104,6 +106,15 @@ const Transfer = (props) => {
             검색
           </button>
         </div>
+        {busInfo && (
+          <p
+            style={{
+              fontSize: "15px",
+            }}
+          >
+            {busInfo}
+          </p>
+        )}
       </div>
 
       <RightNav

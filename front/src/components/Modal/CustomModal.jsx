@@ -38,7 +38,7 @@ const CustomModal = ({ isOpen, closeModal }) => {
   ]);
   const onClick = (e) => {
     const updatedColors = [...buttonColor];
-    updatedColors[parseInt(e.target.name)] = "blue";
+    updatedColors[parseInt(e.target.name)] = "#f0768b";
     setButtonColor(updatedColors);
     setSelect({
       ...select,

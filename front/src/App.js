@@ -13,6 +13,7 @@ import LocModal from "./components/Modal/LocModal";
 import LoginModal from "./components/Modal/LoginModal";
 import CustomModal from "./components/Modal/CustomModal";
 import DemoInfo from "./pages/DemoInfo";
+import ReportModal from "./components/Modal/ReportModal";
 
 const App = () => {
   const [value, setValue] = useState("");
@@ -42,6 +43,23 @@ const App = () => {
     setisLoginModalOpen(false);
   };
 
+  const [isReportModalOpen, setisReportModalOpen] = useState(false);
+  const openReportModal = () => {
+    setisReportModalOpen(true);
+  };
+
+  const closeReportModal = () => {
+    setisReportModalOpen(false);
+  };
+
+  const [isCustomModalOpen, setIsCustomModalOpen] = useState(false);
+  const openCustomModal = () => {
+    setIsCustomModalOpen(true);
+  };
+  const closeCustomModal = () => {
+    setIsCustomModalOpen(false);
+  };
+
   const { listen, listening, stop } = useSpeechRecognition({
     onResult: (result) => {
       setValue(result);
@@ -67,18 +85,9 @@ const App = () => {
     listen();
   });
 
-  const [isCustomModalOpen, setIsCustomModalOpen] = useState(false);
-  const openCustomModal = () => {
-    setIsCustomModalOpen(true);
-  };
-  const closeCustomModal = () => {
-    setIsCustomModalOpen(false);
-  };
-
   return (
     <>
       <Header />
-
       <Routes>
         <Route
           path="/"
@@ -87,6 +96,7 @@ const App = () => {
               openCustomModal={openCustomModal}
               openSignModal={openSignModal}
               openLocModal={openLocModal}
+              openReportModal={openReportModal}
               openLoginModal={openLoginModal}
             />
           }
@@ -97,6 +107,7 @@ const App = () => {
             <Population
               openCustomModal={openCustomModal}
               openSignModal={openSignModal}
+              openReportModal={openReportModal}
               openLocModal={openLocModal}
               openLoginModal={openLoginModal}
             />
@@ -109,6 +120,7 @@ const App = () => {
               openCustomModal={openCustomModal}
               openSignModal={openSignModal}
               openLocModal={openLocModal}
+              openReportModal={openReportModal}
               openLoginModal={openLoginModal}
             />
           }
@@ -120,6 +132,7 @@ const App = () => {
               openCustomModal={openCustomModal}
               openSignModal={openSignModal}
               openLocModal={openLocModal}
+              openReportModal={openReportModal}
               openLoginModal={openLoginModal}
             />
           }
@@ -132,6 +145,7 @@ const App = () => {
               openSignModal={openSignModal}
               openLocModal={openLocModal}
               openLoginModal={openLoginModal}
+              openReportModal={openReportModal}
             />
           }
         ></Route>
@@ -143,15 +157,17 @@ const App = () => {
               openSignModal={openSignModal}
               openLocModal={openLocModal}
               openLoginModal={openLoginModal}
+              openReportModal={openReportModal}
             />
           }
         ></Route>
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
       <CustomModal isOpen={isCustomModalOpen} closeModal={closeCustomModal} />
       <SignModal isOpen={isSignModalOpen} closeModal={closeSignModal} />
       <LocModal isOpen={isLocModalOpen} closeModal={closeLocModal} />
       <LoginModal isOpen={isLoginModalOpen} closeModal={closeLoginModal} />
+      <ReportModal isOpen={isReportModalOpen} closeModal={closeReportModal} />
     </>
   );
 };

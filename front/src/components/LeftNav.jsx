@@ -25,9 +25,9 @@ function LeftNav(props) {
 
   return (
     <nav id="left-nav" style={LNavStyle}>
-      <Box id="home" style={boxStyle}>
-        <a href="/">Care4All</a>
-      </Box>
+      <a href="/">
+        <img src="/images/Logo.png" />
+      </a>
       <Box id="info" style={boxStyle}>
         {/* 메뉴 항목들 */}
         <div style={menuStyle}>
@@ -47,7 +47,9 @@ function LeftNav(props) {
         <div style={menuStyle} onClick={props.openCustomModal}>
           커스터마이징
         </div>
-        <div style={menuStyle}>제보하기</div>
+        <div style={menuStyle} onClick={props.openReportModal}>
+          제보하기
+        </div>
       </Box>
     </nav>
   );

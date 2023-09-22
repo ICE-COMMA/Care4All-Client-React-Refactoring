@@ -11,7 +11,6 @@ const SignModal = ({ isOpen, closeModal }) => {
   const [gender, setGender] = useState(null);
   const [impaired, setImpaired] = useState(null);
 
-  const [message, setMessage] = useState("비밀번호가 일치하지 않습니다.");
   const [userIdValid, setUserIdValid] = useState(false);
   const [userPwValid, setUserPwValid] = useState(false);
 
@@ -25,10 +24,8 @@ const SignModal = ({ isOpen, closeModal }) => {
   useEffect(() => {
     if (password === passwordConfirm && password !== "") {
       setUserPwValid(true);
-      setMessage("비밀번호가 일치합니다.");
     } else {
       setUserPwValid(false);
-      setMessage("비밀번호가 일치하지 않습니다.");
     }
   }, [password, passwordConfirm]);
 
@@ -136,7 +133,6 @@ const SignModal = ({ isOpen, closeModal }) => {
         }}
         required
       />
-      <p>{message}</p>
       <input
         type="date"
         id="date"
@@ -169,6 +165,9 @@ const SignModal = ({ isOpen, closeModal }) => {
         className="sign-up-input"
         onChange={(e) => {
           setImpaired(e.target.value);
+        }}
+        style={{
+          height: "10vh",
         }}
         required
       >

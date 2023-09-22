@@ -43,7 +43,10 @@ const Main = (props) => {
 
   return (
     <div id="wrapper" style={wrapperStyle}>
-      <LeftNav openCustomModal={props.openCustomModal} />
+      <LeftNav
+        openCustomModal={props.openCustomModal}
+        openReportModal={props.openReportModal}
+      />
       {isLogin ? (
         <Content></Content>
       ) : (
