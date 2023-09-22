@@ -44,7 +44,29 @@ const Main = (props) => {
   return (
     <div id="wrapper" style={wrapperStyle}>
       <LeftNav openCustomModal={props.openCustomModal} />
-      <Content></Content>
+      {isLogin ? (
+        <Content></Content>
+      ) : (
+        <div className="content-box">
+          <div id="content-display">
+            <div
+              className="inner-content"
+              style={{
+                backgroundImage: `url("images/custom.jpg")`,
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+                height: "90%",
+                borderTopLeftRadius: "20px",
+                borderTopRightRadius: "20px",
+              }}
+            ></div>
+            <div className="explain-content">
+              로그인 후 커스터마이징을 진행해주세요.
+            </div>
+          </div>
+        </div>
+      )}
+
       <RightNav
         openSignModal={props.openSignModal}
         openLocModal={props.openLocModal}

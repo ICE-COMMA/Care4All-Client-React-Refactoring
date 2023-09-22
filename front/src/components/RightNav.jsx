@@ -30,6 +30,8 @@ function RightNav(props) {
                   localStorage.removeItem("username");
                   localStorage.removeItem("id");
                   setLoginFlag(false);
+                  localStorage.removeItem("custom");
+                  window.location.href = "/";
                 }}
               >
                 로그아웃

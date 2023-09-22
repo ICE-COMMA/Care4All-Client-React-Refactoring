@@ -56,7 +56,9 @@ const CustomModal = ({ isOpen, closeModal }) => {
         .then((response) => {
           console.log(response);
           alert("커스터마이징 성공");
+          localStorage.setItem("custom", true);
           closeModal();
+          window.location.href = "/";
         })
         .catch((error) => {
           console.log(error);

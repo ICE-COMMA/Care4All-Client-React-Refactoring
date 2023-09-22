@@ -5,23 +5,23 @@ const Content = () => {
   const dataSet = useMemo(
     () => [
       {
-        url: "/images/guroDigital.jpg",
-        text: ["구로디지털단지역", "혼잡"],
+        url: "https://mblogthumb-phinf.pstatic.net/MjAyMTAzMTFfNTMg/MDAxNjE1NDU0MjQ3NzIz.w3Ulvz-SK3zJQZSSYw4BeZ0sIdjyXYDoPH4iEKVmrLsg.SCmLTT1b0sMkr_x3kY5DjZYBShJCCMnVw2PXYAAdOfgg.JPEG.karo99/SE-0645ef1a-7a69-467f-8f68-262d6a947081.jpg?type=w800",
+        text: ["길동", "보통"],
         slide: ["●", "○", "○", "○"],
       },
       {
-        url: `https://www.smpa.go.kr/common/attachfile/attachfileView.do?attachNo=00233321&imgType=L`,
+        url: `https://www.smpa.go.kr/common/attachfile/attachfileView.do?attachNo=00233493&imgType=L`,
         text: ["시위정보", null],
         slide: ["○", "●", "○", "○"],
       },
       {
-        url: `https://media.istockphoto.com/id/1487359679/ko/벡터/직장에서-제복을-입은-전문-배관공-욕실-세면대를-고치는-배관공.jpg?s=1024x1024&w=is&k=20&c=MQs_FPXdMIm4YqBJ6zclGCWxRXXW3zmeF_fj6IamOro=`,
-        text: ["테스트 중", null],
+        url: "images/safe.png",
+        text: ["안전지킴이집 정보", null],
         slide: ["○", "○", "●", "○"],
       },
       {
-        url: `https://img.freepik.com/premium-vector/the-man-has-repaired-the-old-house-for-rent_701961-3369.jpg`,
-        text: ["테스트중", null],
+        url: `images/pop.png`,
+        text: ["길동 혼잡도 예측", null],
         slide: ["○", "○", "○", "●"],
       },
     ],
@@ -33,6 +33,7 @@ const Content = () => {
   const [mainText, setMainText] = useState(null);
   const [subText, setSubText] = useState(null);
   const [contentUrl, setContentUrl] = useState(null);
+  const [isSetting, setIsSetting] = useState(false);
 
   const handleContent = useCallback(() => {
     // 2초마다 slideIndex를 증가시켜 슬라이드 쇼를 진행합니다.
@@ -44,15 +45,18 @@ const Content = () => {
   }, [slideIndex, dataSet]);
 
   useEffect(() => {
-    const interval = setInterval(handleContent, 2000);
+    const interval = setInterval(handleContent, 1500);
     return () => clearInterval(interval);
   }, [handleContent]);
+
+  useEffect(() => {
+    setIsSetting(localStorage.getItem("custom"));
+  }, []);
 
   return (
     <div className="content-box">
       <div id="content-display">
-        {/* 여기서 겉면 칠해주는거 */}
-        {contentUrl && (
+        {isSetting ? (
           <div
             className="inner-content"
             style={{
@@ -64,12 +68,28 @@ const Content = () => {
               borderTopRightRadius: "20px",
             }}
           ></div>
+        ) : (
+          <div
+            className="inner-content"
+            style={{
+              backgroundImage: `url("images/custom.jpg")`,
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+              height: "90%",
+              borderTopLeftRadius: "20px",
+              borderTopRightRadius: "20px",
+            }}
+          ></div>
         )}
 
-        <div className="explain-content">
-          <span>{mainText}</span>
-          {subText && <span>{subText}</span>}
-        </div>
+        {isSetting ? (
+          <div className="explain-content">
+            <span>{mainText}</span>
+            {subText && <span>{subText}</span>}
+          </div>
+        ) : (
+          <div className="explain-content">커스터마이징을 진행해주세요.</div>
+        )}
       </div>
       <div className="slide-box">
         <span className="slide1">{slideInfo[0]}</span>
