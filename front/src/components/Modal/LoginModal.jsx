@@ -28,7 +28,7 @@ const LoginModal = ({ isOpen, closeModal }) => {
       };
       console.log(body);
       axios
-        .post("/api/login/", body, {
+        .post("/api/auth/login/", body, {
           headers: {
             "X-CSRFToken": csrftoken,
           },

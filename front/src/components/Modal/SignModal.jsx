@@ -32,7 +32,7 @@ const SignModal = ({ isOpen, closeModal }) => {
   const handleCheckID = () => {
     axios
       .post(
-        "/api/id_check/",
+        "/api/auth/id_check/",
         { userId },
         {
           headers: {
@@ -65,7 +65,7 @@ const SignModal = ({ isOpen, closeModal }) => {
     }
     axios
       .post(
-        "/api/sign_up/",
+        "/api/auth/sign_up/",
         { userName, userId, password, birth, gender, impaired },
         {
           headers: {

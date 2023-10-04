@@ -13,6 +13,30 @@ const Main = (props) => {
     } else setisLogin(false);
   }, [localStorage.getItem("username")]);
 
+  useEffect(() => {
+    // Axios를 사용하여 데이터 가져오기
+    axios
+      .get("api/dense_popul_info/real/")
+      .then((response) => {
+        const real_data = response.data;
+        console.log(real_data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        // 오류 처리 로직 추가
+      });
+    axios
+      .get("api/dense_popul_info/predict/")
+      .then((response) => {
+        const predict_data = response.data;
+        console.log(predict_data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        // 오류 처리 로직 추가
+      });
+  }, []);
+
   const wrapperStyle = {
     height: "80%",
     display: "flex",
