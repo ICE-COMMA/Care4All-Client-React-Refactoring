@@ -2,14 +2,21 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import SpeechService from "../SpeechService";
 
-const { kakao } = window;
-
 function SafetyMap() {
+  const apiKey = process.env.REACT_APP_KAKAO_KEY;
   const [x1, setX1] = useState("");
   const [y1, setY1] = useState("");
   const [mInfos, setMInfos] = useState([]);
 
   useEffect(() => {
+    if (apiKey) {
+      const script = document.createElement("script");
+      script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}`;
+      script.async = true;
+      document.head.appendChild(script);
+    }
+    const { kakao } = window;
+
     const fetchDataAndInitializeMap = async () => {
       try {
         const retrievedX1 = sessionStorage.getItem("longitude");
@@ -32,6 +39,9 @@ function SafetyMap() {
         const options = {
           center: new kakao.maps.LatLng(retrievedY1, retrievedX1),
           level: 3,
+        };
+        script.onload = () => {
+          let kakao = { window };
         };
 
         const map = new kakao.maps.Map(container, options);
