@@ -3,6 +3,7 @@ import LeftNav from "../components/LeftNav";
 import RightNav from "../components/RightNav";
 import "../styles/ChartComponent.css";
 import ChartComponent from "../components/Modal/ChartComponent";
+import axios from "axios";
 
 const Main = (props) => {
   const [isLogin, setisLogin] = useState(false);

@@ -41,3 +41,5 @@ function SpeechService() {
   );
 }
 export default SpeechService;
+
+// 만약 음성인식이 되지 않을 때, 예외처리 부분 넣어야함.
