@@ -7,6 +7,7 @@ const LocModal = ({ isOpen, closeModal }) => {
   const [lon, setLon] = useState(126.9978758);
   if (!isOpen) return null;
   const { kakao } = window;
+  console.log(kakao);
   // 초기 디폴트 위치 정보 임의 설정, 안해도 되는데, 편의상함
   const handleGps = () => {
     if ("geolocation" in navigator) {
