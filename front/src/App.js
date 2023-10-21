@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSpeechRecognition } from "react-speech-kit";
+// import { useSpeechRecognition } from "react-speech-kit";
 import { Routes, Route } from "react-router-dom";
 import Main from "./pages/Main";
 import Transfer from "./pages/Transfer";
@@ -7,7 +7,6 @@ import Population from "./pages/Population";
 import Safety from "./pages/Safety";
 import Mypage from "./pages/Mypage";
 import Header from "./components/Header";
-import Footer from "./components/Footer";
 import SignModal from "./components/Modal/SignModal";
 import LocModal from "./components/Modal/LocModal";
 import LoginModal from "./components/Modal/LoginModal";
@@ -60,30 +59,31 @@ const App = () => {
     setIsCustomModalOpen(false);
   };
 
-  const { listen, listening, stop } = useSpeechRecognition({
-    onResult: (result) => {
-      setValue(result);
-      console.log(result);
-      if (result.includes("교통")) {
-        window.location.href = "/transfer";
-      }
-      if (result.includes("인구")) {
-        window.location.href = "/population";
-      }
-      if (result.includes("시위")) {
-        window.location.href = "/get_demo_today";
-      }
-      if (result.includes("안전")) {
-        window.location.href = "/safety";
-      }
-      if (result.includes("메인")) {
-        window.location.href = "/";
-      }
-    },
-  });
+  // const { listen, listening, stop } = useSpeechRecognition({
+  //   onResult: (result) => {
+  //     setValue(result);
+  //     console.log(result);
+  //     if (result.includes("교통")) {
+  //       window.location.href = "/transfer";
+  //     }
+  //     if (result.includes("인구")) {
+  //       window.location.href = "/population";
+  //     }
+  //     if (result.includes("시위")) {
+  //       window.location.href = "/get_demo_today";
+  //     }
+  //     if (result.includes("안전")) {
+  //       window.location.href = "/safety";
+  //     }
+  //     if (result.includes("메인")) {
+  //       window.location.href = "/";
+  //     }
+  //   },
+  // });
   useEffect(() => {
-    listen();
-  });
+    console.log(window);
+    console.log(window.kakao);
+  }, []);
 
   return (
     <>
