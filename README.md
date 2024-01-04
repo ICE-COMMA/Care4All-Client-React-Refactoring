@@ -1,11 +1,5 @@
 # 사회적 약자 참여형 스마트시티 생활 예보 서비스
 
-<p align="center">
-  <br>
-  <img src="static/images/comma.png">
-  <br>
-</p>
-
 ## 프로젝트 소개
 
 <p align="justify">
