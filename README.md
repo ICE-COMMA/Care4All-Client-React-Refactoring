@@ -63,12 +63,12 @@ MIT &copy; [NoHack](mailto:lbjp114@gmail.com) -->
 
 <!-- Stack Icon Refernces -->
 
-[html]: static/images/stack/html.svg
-[css]: static/images/stack/css.svg
-[js]: static/images/stack/javascript.svg
-[react]: static/images/stack/react.svg
-[figma]: static/images/stack/figma.svg
-[notion]: static/images/stack/notion.svg
+[html]: front/public/images/html.svg
+[css]: front/public/images/css.svg
+[js]: front/public/images/javascript.svg
+[react]: front/public/images/react.svg
+[figma]: front/public/images/figma.svg
+[notion]: front/public/images/notion.svg
 
 <br>
 

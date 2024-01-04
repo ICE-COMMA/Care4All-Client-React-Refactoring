@@ -6,29 +6,39 @@ import axios from "axios";
 // const loginInput = styled.input``;
 
 const LoginModal = ({ isOpen, closeModal }) => {
-  const [id, setId] = useState("");
+  const getCookie = (name) => {
+    const cookieString = document.cookie;
+    const csrfTokenCookie = cookieString
+      .split("; ")
+      .find((cookie) => cookie.startsWith("csrftoken="));
+
+    if (csrfTokenCookie) {
+      return csrfTokenCookie.split("=")[1];
+    }
+
+    return null;
+  };
+
+  const [id, setid] = useState("");
   const [password, setPassword] = useState("");
   const idInput = useRef();
   let username = null;
-  function getCookie(name) {
-    let value = "; " + document.cookie;
-    let parts = value.split("; " + name + "=");
-    if (parts.length === 2) return parts.pop().split(";").shift();
-  }
-  const csrftoken = getCookie("csrftoken");
+
+  const csrftoken = getCookie();
   const handleLogin = () => {
     if (!id) {
-      return alert("ID를 입력하세요.");
+      return alert("id를 입력하세요.");
     } else if (!password) {
       return alert("Password를 입력하세요.");
     } else {
       let body = {
-        id,
+        ID: id,
+        id: id,
         password,
       };
       console.log(body);
       axios
-        .post("/api/auth/login/", body, {
+        .post("api/auth/login/", body, {
           headers: {
             "X-CSRFToken": csrftoken,
           },
@@ -46,6 +56,7 @@ const LoginModal = ({ isOpen, closeModal }) => {
           }
         })
         .catch((e) => {
+          console.log(e);
           alert("아이디나 비밀번호를 확인해주세요!");
           closeModal();
         });
@@ -59,7 +70,7 @@ const LoginModal = ({ isOpen, closeModal }) => {
         id="id"
         value={id}
         placeholder="아이디"
-        onChange={(e) => setId(e.target.value)}
+        onChange={(e) => setid(e.target.value)}
         ref={idInput}
         style={{
           width: "100%",
@@ -73,7 +84,7 @@ const LoginModal = ({ isOpen, closeModal }) => {
         placeholder="비밀번호"
         onChange={(e) => setPassword(e.target.value)}
         style={{
-          width: "100%",
+          wth: "100%",
           height: "20%",
         }}
         required
